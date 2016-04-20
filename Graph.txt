@@ -1,0 +1,17 @@
+1. Click to Add point in graph
+http://www.highcharts.com/demo/dynamic-click-to-add
+
+2. Different chart -- No dynamic ไม่สวยแต่ตรง
+http://bl.ocks.org/mbostock/3894205
+
+3. Multi-chart and synchronous --> prefer this
+http://www.highcharts.com/demo/synchronized-charts
+
+4. Over Under Chart -- ไม่ค่อยสวย แต่น่าจะตรง
+http://www.ejschart.com/examples.php
+
+5. Filled area 2 charts
+https://plot.ly/javascript/filled-area-plots/
+
+6. Famous Chart Library
+http://www.chartjs.org/docs/
