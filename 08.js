@@ -6,10 +6,21 @@ $(document).ready(function(){
 	$("#img1").hide();
 	$("#img2").hide();
 	$(function () {
-	    $(":file").change(function () {
+	    $("#in-img1:file").change(function () {
 	        if (this.files && this.files[0]) {
 	            var reader = new FileReader();
-	            reader.onload = imageIsLoaded;
+	            reader.onload = imageIsLoaded1;
+	            
+	            reader.readAsDataURL(this.files[0]);
+	        }
+	    });
+	});
+
+	$(function () {
+	    $("#in-img2:file").change(function () {
+	        if (this.files && this.files[0]) {
+	            var reader = new FileReader();
+	            reader.onload = imageIsLoaded2;
 	            
 	            reader.readAsDataURL(this.files[0]);
 	        }
@@ -17,12 +28,20 @@ $(document).ready(function(){
 	});
 });
 
-function imageIsLoaded(e) {
+function imageIsLoaded1(e) {
     $('#img1').attr('src', e.target.result);
     $("#img1").show();
-    source = e.target.result;
-    $('#imgSource').attr('src', source);
+    source1 = e.target.result;
+    $('#imgSource').attr('src', source1);
 };
+
+function imageIsLoaded2(e) {
+    $('#img2').attr('src', e.target.result);
+    $("#img2").show();
+    source2 = e.target.result;
+    $('#imgSource').attr('src', source2);
+};
+
 
 function showImage(e) {
     $('<img>').appendTo($("#result")).attr('src', e.target.result);

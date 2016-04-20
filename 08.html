@@ -109,16 +109,29 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12 text-center">
+
+                <div class="col-md-6 text-center ">
                   <span id ="inputImage">
-                        <input type='file' class ="btn btn-lg btn-success"/>
-                      
-                        <button type="button" id="btn-dtw"class="btn btn-success btn-lg">DTW</button>
-                        <button type="button" id="btn-eu"class="btn btn-success btn-lg">Euclidean</button>
+                        <h4>First Picture</h4>
+                        <input type='file' id="in-img1" class ="btn btn-lg btn-success text-center"/>
                         <br>
                         <img id="img1" src="#" alt="no photo" />
-
                   </span>
+                </div>
+                <div class=" col-md-6 text-center">
+                  <span id ="inputImage">
+                        <h4>Second Picture</h4>
+                        <input type='file' id="in-img2" class ="btn btn-lg btn-success"/>
+                        <br>
+                        <img id="img2" src="#" alt="no photo" />
+                  </span>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <button type="button" id="btn-dtw"class="btn btn-success btn-lg">DTW</button>  
+                    <button type="button" id="btn-eu"class="btn btn-success btn-lg">Euclidean</button>
                 </div>
             </div>
         </div>
@@ -134,11 +147,11 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-lg-offset-2">
+                <div class="col-lg-4 col-lg-offset-2 text-center">
                     <img scr = />
                     <p>5531003921 Kornraphop Kawintiranon </p>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 text-center">
                     <img scr = />
                     <p>5531017721 Yanika Buatong </p>
                 </div>
@@ -223,6 +236,9 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/freelancer.js"></script>
 
+    <!-- Graph library -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
 </body>
 
 </html>
