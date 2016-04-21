@@ -1,5 +1,9 @@
 var source;
 var rgb1, rgb2, red1, red2;
+var r1=[],g1=[],b1=[],a1=[];
+var r2=[],g2=[],b2=[],a2=[];
+var red1;
+var points = [120, 100, 200, 5, 25, 10];
 $(document).ready(function(){
 	
 	drawGraph();
@@ -57,18 +61,14 @@ function showBlue(e) {
 
 function imageIsLoaded1(e) {
     $('#img1').attr('src', e.target.result);
-    var w = $('#img1').width();
-    var h = $('#img1').height();
-    $("#img1").attr({
-        "width" : 500,
-        "height" : (w/500*h)
-    });
+    $('#img11').attr('src', e.target.result);
     $("#img1").show();
 
 };
 
 function imageIsLoaded2(e) {
     $('#img2').attr('src', e.target.result);
+    $('#img22').attr('src', e.target.result);
     $("#img2").show();
     
 };
@@ -91,11 +91,32 @@ function getRGB1(e){
     var ctx=c.getContext("2d");
     var img = document.getElementById("img1");
     
-    c.width = img.width;
-    c.height = img.height;
+    var w = img.width;
+    var h = img.height;
+    c.width = w;
+    c.height = h;
 	ctx.drawImage(img, 0, 0);
+	// c.width = 500;
+	// c.height = h*500/w;
 	rgb1 = ctx.getImageData(0, 0, c.width, c.height).data;
+	for (var i = 0, n = 20; i < n; i += 4) {
+	    
+		r1.push(rgb1[i  ]);
+		g1.push(rgb1[i +1]); // green
+		b1.push(rgb1[i +2]); // blue
+		a1.push(rgb1[i +3]); // alpha
+	}
+	
+	//var rgb1Array = Array.prototype.slice.call(rgb1);
+	// for (var i = 0, n = rgb1Array.length; i < n; i += 4) {
+	    
+	// 	r1.push(rgb1Array[i  ]);
+	// 	g1.push(rgb1Array[i +1]); // green
+	// 	b1.push(rgb1Array[i +2]); // blue
+	// 	a1.push(rgb1Array[i +3]); // alpha
+	// }
 
+	// var red1 = Array.prototype.slice.call(r1);
 };
 
 function getRGB2(e){
@@ -106,7 +127,6 @@ function getRGB2(e){
     c.height = img.height;
 	ctx.drawImage(img, 0, 0);
 	rgb2 = ctx.getImageData(0, 0, c.width, c.height).data;
-	
 };
 
 
@@ -146,10 +166,10 @@ function drawGraph(){
         },
         series: [{
             name: 'First picture',
-            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+            data: r1
         }, {
             name: 'Second picture',
-            data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+            data: points
         }]
     });
 
