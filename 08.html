@@ -4,7 +4,7 @@
 <head>
 
 
-    <title>Number reader</title>
+    <title>PIC</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top">Number reader</a>
+                <a class="navbar-brand" href="#page-top">PIC</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -48,14 +48,14 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#func">Function</a>
+                        <a href="#func">:)</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#result">Result</a>
+                        <a href="#about">About</a>
                     </li>
-                    <li class="page-scroll">
+                    <!-- <li class="page-scroll">
                         <a href="#contact">Contact</a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -95,20 +95,30 @@
                     <button type="button" id="btn-r"class="btn btn-success btn-lg">RED</button>  
                     <button type="button" id="btn-g"class="btn btn-success btn-lg">GREEN</button>
                     <button type="button" id="btn-b"class="btn btn-success btn-lg">BLUE</button>  
-                
-                    <canvas id="cv1"><img id="img11" src="#" alt="no photo" /></canvas>
-                    <canvas id="cv2"><img id="img22" src="#" alt="no photo" /></canvas>
                 </div>
-                
-                <div class="col-lg-12 text-center">
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-6 text-center ">
+                    <img id="img11" src="#" alt="no photo" />
+                    <canvas id="cv1"></canvas>
+                </div>
+                <div class="col-md-6 text-center ">
+                    <img id="img22" src="#" alt="no photo" />
+                    <canvas id="cv2"></canvas>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="text-center">
                     <section id="red"> 
-                        <div id="graph-r"></div>
+                        <div id="graph-r" class="graph"></div>
                     </section>
                     <section id="green"> 
-                        <div id="graph-g"></div>
+                        <div id="graph-g" class="graph"></div>
                     </section>
                     <section id="blue"> 
-                        <div id="graph-b"></div>
+                        <div id="graph-b" class="graph"></div>
                     </section>
                 </div>
             </div>
@@ -124,8 +134,8 @@
                     <hr class="star-primary">
                 </div>
             </div>
+            <br>
             <div class="row">
-
                 <div class="col-md-6 text-center ">
                   <span id ="inputImage">
                         <h4>First Picture</h4>
@@ -143,7 +153,7 @@
                   </span>
                 </div>
             </div>
-            
+            <br>
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <button type="button" id="btn-dtw"class="btn btn-success btn-lg">DTW</button>  
@@ -153,23 +163,23 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="success" id="contact">
+    <!-- About Section -->
+    <section class="success" id="about">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Contact</h2>
+                    <h2>About</h2>
                     <hr class="star-light">
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-4 col-lg-offset-2 text-center">
-                    <img scr = />
-                    <p>5531003921</p><p>Kornraphop Kawintiranon </p>
+                    <img scr =""  height="150" width="150">
+                    <p>5531003921 Kornraphop Kawintiranon </p>
                 </div>
                 <div class="col-lg-4 text-center">
-                    <img scr = />
-                    <p>5531017721</p><p>Yanika Buatong </p>
+                    <img scr ="nn.png" height="150" width="150">
+                    <p>5531017721 Yanika Buatong </p>
                 </div>
                 
             </div>
@@ -184,28 +194,11 @@
             <div class="container">
                 <div class="row">
                     <div class="footer-col col-md-4">
-                        <h3>Kornosk</h3>
-                        <ul class="list-inline">
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer-col col-md-4">
                         <h3>Location</h3>
                         <p>CN47, Cinnamoroll Village<br>Sanrio puroland, Japan</p>
                     </div>
                     <div class="footer-col col-md-4">
-                        <h3>Noonn</h3>
+                        <h3>Around the Web</h3>
                         <ul class="list-inline">
                             <li>
                                 <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
@@ -219,7 +212,14 @@
                             <li>
                                 <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
                             </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
+                            </li>
                         </ul>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>About Freelancer</h3>
+                        <p>Freelance is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
                     </div>
                 </div>
             </div>
@@ -228,7 +228,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; Kornosk &amp; Noonn 2016
+                        Copyright &copy; Your Website 2014
                     </div>
                 </div>
             </div>

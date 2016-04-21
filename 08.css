@@ -2,12 +2,7 @@
 	
 }
 
-#img1{
-	width: 500px;
-	height: auto;
-}
-
-#img2{
+#img1, #img2, #img11, #img22{
 	width: 500px;
 	height: auto;
 }
@@ -17,5 +12,11 @@
 }
 
 input{
+	margin: auto;
+}
+
+.graph{
+	width: 80%;
+	height: auto;
 	margin: auto;
 }
