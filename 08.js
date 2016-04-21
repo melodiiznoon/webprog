@@ -1,14 +1,18 @@
 var source;
+var mode = 0;
 var rgb1, rgb2, red1, red2;
 var r1=[],g1=[],b1=[],a1=[];
 var r2=[],g2=[],b2=[],a2=[];
 var red1;
 var points = [120, 100, 200, 5, 25, 10];
+var dtwDistance = {};
+var euDistance = {};
 $(document).ready(function(){
 	
 	
-	$("#btn-dtw").click(dtw);
-	$("#btn-eu").click(eu);
+	$("#btn-dtw").click(setMode(1));
+	$("#btn-eu").click(setMode(0));
+    $("#btn-submit").click(submit);
 	$("#btn-r").click(showRed);
 	$("#btn-g").click(showGreen);
 	$("#btn-b").click(showBlue);
@@ -73,18 +77,89 @@ function imageIsLoaded2(e) {
     
 };
 
-
 function dtw(e){
 	$("#func").hide();
 	getRGB1();
 	getRGB2();
-	drawGraph();
+
+    // Send to server for calculation
+    e.preventDefault();
+    console.log('Sent to server ...');
+
+    var data = {};
+    data.r1 = r1;
+    data.r2 = r2;
+    data.g1 = g1;
+    data.g2 = g2;
+    data.b1 = b1;
+    data.b2 = b2;
+    data.a1 = a1;
+    data.a2 = a2;
+
+
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(data),
+        contentType: 'application/json',
+        url: 'http://localhost:3000/endpoint',                      
+        success: function(data) {
+            var returnObject = JSON.parse(data)
+            console.log('success');
+            console.log('DTW of R: ' + returnObject.dtwr);
+            console.log('DTW of G: ' + returnObject.dtwg);
+            console.log('DTW of B: ' + returnObject.dtwb);
+            console.log('DTW of A: ' + returnObject.dtwa);
+
+            dtwDistance.r = returnObject.dtwr;
+            dtwDistance.g = returnObject.dtwg;
+            dtwDistance.b = returnObject.dtwb;
+            dtwDistance.a = returnObject.dtwa;
+        }
+    });
+	
 	$("#result").show();
 };
 
-function eu(){
+function eu(e){
 
+    // R
+    var sum = 0;
+    var less = (r1 > r2) ? r2 : r1;
+    for (var i = less.length - 1; i >= 0; i--) {
+        sum = sum + Math.abs(r1[i] - r2[i]);
+    }
+    euDistance.r = sum;
+
+    // G
+    sum = 0;
+    less = (g1 > g2) ? g2 : g1;
+    for (var i = less.length - 1; i >= 0; i--) {
+        sum = sum + Math.abs(g1[i] - g2[i]);
+    }
+    euDistance.g = sum;
+
+    // B
+    sum = 0;
+    less = (b1 > b2) ? b2 : b1;
+    for (var i = less.length - 1; i >= 0; i--) {
+        sum = sum + Math.abs(b1[i] - b2[i]);
+    }
+    euDistance.b = sum;
+
+    // A
+    sum = 0;
+    less = (a1 > a2) ? a2 : a1;
+    for (var i = less.length - 1; i >= 0; i--) {
+        sum = sum + Math.abs(a1[i] - a2[i]);
+    }
+    euDistance.a = sum;
 };
+
+function submit(e) {
+    if(mode == 1) dtw(e);
+    else eu(e);
+}
+
 
 function getRGB1(e){
 	var c = document.getElementById("cv1");

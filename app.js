@@ -18,9 +18,22 @@ app.use(function(req, res, next) {
 
 // Receive request
 app.post('/endpoint', function(req, res, next){
+
+	var r1 = req.body.r1;
+	var r2 = req.body.r2;
+	var g1 = req.body.g1;
+	var g2 = req.body.g2;
+	var b1 = req.body.b1;
+	var b2 = req.body.b2;
+	var a1 = req.body.a1;
+	var a2 = req.body.a2;
+
 	var data = {};
-    data.title = "This is title from server!";
-    data.message = "This is message from server!";
+    data.dtwr = nodeDTW(r1,r2);
+    data.dtwg = nodeDTW(g1,g2);
+    data.dtwb = nodeDTW(b1,b2);
+    data.dtwa = nodeDTW(a1,a2);
+
 	res.send(JSON.stringify(data));
 });
 
@@ -33,18 +46,12 @@ app.listen(port, function(){
 // DTW
 var DTW = require('dtw');
 
-var nodeDTW = function() {
+var nodeDTW = function(serie1, serie2) {
 	
 	console.log("Start DTW ...");
-	var normalArrayRGB_01 = Array.prototype.slice.call(rgb);
-	var normalArrayRGB_02 = Array.prototype.slice.call(rgb);
-	console.log(normalArrayRGB);
-	var s = normalArrayRGB;
-	var t = normalArrayRGB;
 	var dtw = new DTW();
-	var cost = dtw.compute(s, t);
-	var path = dtw.path();
-	console.log('Cost: ' + cost);
-	console.log('Path: ');
-	console.log(path);
+	var cost = dtw.compute(serie1, serie2);
+	// var path = dtw.path();
+	console.log('Compute success');
+	return cost;
 };
