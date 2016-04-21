@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "08.js",
   "dependencies": {
+    "body-parser": "^1.15.0",
     "dtw": "0.0.3",
     "express": "^4.13.4",
     "webpack": "^1.13.0"
