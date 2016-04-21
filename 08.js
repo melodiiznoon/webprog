@@ -4,9 +4,18 @@ $(document).ready(function(){
 	
 	drawGraph();
 	$("#btn-dtw").click(dtw);
+	$("#btn-eu").click(eu);
+	$("#btn-r").click(showRed);
+	$("#btn-g").click(showGreen);
+	$("#btn-b").click(showBlue);
 	$("#result").hide();
 	$("#img1").hide();
 	$("#img2").hide();
+	$("#green").hide();
+	$("#blue").hide();
+	$("#cv1").hide();
+	$("#cv2").hide();
+
 	$(function () {
 	    $("#in-img1:file").change(function () {
 	        if (this.files && this.files[0]) {
@@ -28,18 +37,40 @@ $(document).ready(function(){
 	});
 });
 
+function showRed(e) {
+	$("#red").show();
+	$("#green").hide();
+	$("#blue").hide();
+};
+
+function showGreen(e) {
+	$("#red").hide();
+	$("#green").show();
+	$("#blue").hide();
+};
+
+function showBlue(e) {
+	$("#red").hide();
+	$("#green").hide();
+	$("#blue").show();
+};
+
 function imageIsLoaded1(e) {
     $('#img1').attr('src', e.target.result);
+    var w = $('#img1').width();
+    var h = $('#img1').height();
+    $("#img1").attr({
+        "width" : 500,
+        "height" : (w/500*h)
+    });
     $("#img1").show();
-    source1 = e.target.result;
-    $('#imgSource').attr('src', source1);
+
 };
 
 function imageIsLoaded2(e) {
     $('#img2').attr('src', e.target.result);
     $("#img2").show();
-    source2 = e.target.result;
-    $('#imgSource').attr('src', source2);
+    
 };
 
 
@@ -47,13 +78,19 @@ function dtw(e){
 	$("#func").hide();
 	getRGB1();
 	getRGB2();
+	
 	$("#result").show();
+};
+
+function eu(){
+
 };
 
 function getRGB1(e){
 	var c = document.getElementById("cv1");
     var ctx=c.getContext("2d");
     var img = document.getElementById("img1");
+    
     c.width = img.width;
     c.height = img.height;
 	ctx.drawImage(img, 0, 0);
@@ -72,8 +109,11 @@ function getRGB2(e){
 	
 };
 
+
+
 function drawGraph(){
-	$('#graph').highcharts({
+	// red graph
+	$('#graph-r').highcharts({
         title: {
             text: 'Red',
             x: -20 //center
@@ -96,7 +136,89 @@ function drawGraph(){
             }]
         },
         tooltip: {
-            valueSuffix: '°C'
+            valueSuffix: ''
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: 'First picture',
+            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+        }, {
+            name: 'Second picture',
+            data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+        }]
+    });
+
+	// green graph
+    $('#graph-g').highcharts({
+        title: {
+            text: 'Green',
+            x: -20 //center
+        },
+        subtitle: {
+            text: 'from 2 pictures',
+            x: -20
+        },
+        xAxis: {
+            categories: []
+        },
+        yAxis: {
+            title: {
+                text: 'red scale'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: ''
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: 'First picture',
+            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+        }, {
+            name: 'Second picture',
+            data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+        }]
+    });
+
+    // blue graph
+    $('#graph-b').highcharts({
+        title: {
+            text: 'Blue',
+            x: -20 //center
+        },
+        subtitle: {
+            text: 'from 2 pictures',
+            x: -20
+        },
+        xAxis: {
+            categories: []
+        },
+        yAxis: {
+            title: {
+                text: 'red scale'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: ''
         },
         legend: {
             layout: 'vertical',
