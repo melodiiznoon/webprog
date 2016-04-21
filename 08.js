@@ -2,8 +2,7 @@ var source;
 var rgb1, rgb2, red1, red2;
 var r1=[],g1=[],b1=[],a1=[];
 var r2=[],g2=[],b2=[],a2=[];
-var red1;
-var points = [120, 100, 200, 5, 25, 10];
+
 $(document).ready(function(){
 	
 	
@@ -96,8 +95,7 @@ function getRGB1(e){
     c.width = w;
     c.height = h;
 	ctx.drawImage(img, 0, 0);
-	// c.width = 500;
-	// c.height = h*500/w;
+
 	rgb1 = ctx.getImageData(0, 0, c.width, c.height).data;
 	for (var i = 0, n = 100; i < n; i += 4) {
 	    
@@ -186,7 +184,7 @@ function drawGraph(){
         },
         yAxis: {
             title: {
-                text: 'red scale'
+                text: 'green scale'
             },
             plotLines: [{
                 value: 0,
@@ -227,7 +225,7 @@ function drawGraph(){
         },
         yAxis: {
             title: {
-                text: 'red scale'
+                text: 'blue scale'
             },
             plotLines: [{
                 value: 0,
