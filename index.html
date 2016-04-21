@@ -4,10 +4,13 @@
 <head>
 
 
-    <title>PIC</title>
+    <title>PICDIST</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Dialog -->
+    <link href="css/bootstrap-dialog.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/freelancer.css" rel="stylesheet">
@@ -17,11 +20,21 @@
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+
     
     <!-- js -->
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="js/bootstrap-dialog.js"></script>
     <script type="text/javascript" src="08.js"></script>
+
 
 </head>
 
@@ -38,7 +51,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top">PIC</a>
+                <a class="navbar-brand" href="#page-top">PICDIST</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -48,14 +61,17 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#func">Function</a>
+                        <a href="#func">Pic</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#select">Dist</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#result">Result</a>
                     </li>
                     <li class="page-scroll">
                         <a href="#contact">Contact</a>
                     </li>
-                    <!-- <li class="page-scroll">
-                        <a href="#contact">Contact</a>
-                    </li> -->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -70,7 +86,7 @@
                 <div class="col-lg-12 text-center">
                     <img class="img-responsive" src="img/profile.png" alt="">
                     <div class="intro-text page-scroll">
-                        <span class="name">DTW & EUCLIDEAN </span>
+                        <span class="name">DTW &amp; EUCLIDEAN </span>
                         <p class="skills"> - Web application - </p>
                         <hr class="star-light">
                         
@@ -85,18 +101,98 @@
         </div>
     </header>
 
-    <!-- result -->
-    <section id="result">
+    <!-- Function Section -->
+    <section id="func">
+        <div class="container" id="func">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Pic</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-6 text-center ">
+                  <span id ="inputImage">
+                        <h4>First Picture</h4>
+                        <input type='file' id="in-img1" class ="btn btn-lg btn-success text-center"/>
+                        <br>
+                        <img id="img1" src="#" alt="no photo" />
+                  </span>
+                </div>
+                <div class=" col-md-6 text-center">
+                  <span id ="inputImage">
+                        <h4>Second Picture</h4>
+                        <input type='file' id="in-img2" class ="btn btn-lg btn-success"/>
+                        <br>
+                        <img id="img2" src="#" alt="no photo" />
+                  </span>
+                </div>
+            </div>
+            <br>
+        </div>
+    </section>
+
+    <!-- Select Section -->
+    <section class="success" id="select">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
+                    <h2>Type</h2>
+                    <hr class="star-light">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-2 text-center">
+                    <button href="#result" id="btn-dtw" class="btn btn-success btn-lg">
+                        <img src = "img/dtw_pic.png">
+                        <br>
+                        <p>Dynamic Time Warping</p>
+                    </button>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <button href="#result" id="btn-eu" class="btn btn-success btn-lg">
+                        <img src = "img/eu_pic.png">
+                        <br>
+                        <p>Euclidean</p>
+                    </button>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <button href="#result" id="btn-submit" class="btn btn-success btn-lg">Submit</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Result Sectiom -->
+    <section id="result">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    
+                </div>
+                <div class="col-lg-8 text-center">
                     <h2>Result</h2>
                     <hr class="star-primary">
                     <button type="button" id="btn-r"class="btn btn-success btn-lg">RED</button>  
                     <button type="button" id="btn-g"class="btn btn-success btn-lg">GREEN</button>
-                    <button type="button" id="btn-b"class="btn btn-success btn-lg">BLUE</button>  
+                    <button type="button" id="btn-b"class="btn btn-success btn-lg">BLUE</button>
+                </div>
+                <div class="col-lg-2 text-center">
+                    <p>Distance</p>
+                    <div class="circle circle-border">
+                        <div class="circle-inner">
+                            <div class="score-text">
+                                Score
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
             <br>
             <div class="row">
                 <div class="col-md-6 text-center ">
@@ -125,61 +221,23 @@
         </div>
     </section>
 
-    <!-- Portfolio Grid Section -->
-    <section id="func">
-        <div class="container" id="func">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Function</h2>
-                    <hr class="star-primary">
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-md-6 text-center ">
-                  <span id ="inputImage">
-                        <h4>First Picture</h4>
-                        <input type='file' id="in-img1" class ="btn btn-lg btn-success text-center"/>
-                        <br>
-                        <img id="img1" src="#" alt="no photo" />
-                  </span>
-                </div>
-                <div class=" col-md-6 text-center">
-                  <span id ="inputImage">
-                        <h4>Second Picture</h4>
-                        <input type='file' id="in-img2" class ="btn btn-lg btn-success"/>
-                        <br>
-                        <img id="img2" src="#" alt="no photo" />
-                  </span>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <button type="button" id="btn-dtw"class="btn btn-success btn-lg">DTW</button>  
-                    <button type="button" id="btn-eu"class="btn btn-success btn-lg">Euclidean</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Contact Section -->
     <section class="success" id="contact">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>About</h2>
+                    <h2>Contact</h2>
                     <hr class="star-light">
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-4 col-lg-offset-2 text-center">
-                    <img scr =""  height="150" width="150">
+                    <img src ="img/kk.png"  height="150" width="150">
                     <br>
                     <p>5531003921</p><p>Kornraphop Kawintiranon </p>
                 </div>
                 <div class="col-lg-4 text-center">
-                    <img scr ="nn.png" height="150" width="150">
+                    <img src ="img/nn.png" height="150" width="150">
                     <br>
                     <p>5531017721</p><p>Yanika Buatong </p>
                 </div>
@@ -187,7 +245,6 @@
             </div>
         </div>
     </section>
-
 
 
     <!-- Footer -->
@@ -199,16 +256,16 @@
                         <h3>Kornosk</h3>
                         <ul class="list-inline">
                             <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                                <a href="https://www.facebook.com/kornraphop.kawintiranon" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
                             </li>
                             <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+                                <a href="https://plus.google.com/112999005075423917203/posts" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
                             </li>
                             <li>
                                 <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
                             </li>
                             <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                                <a href="https://www.linkedin.com/in/kornraphop" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -220,7 +277,7 @@
                         <h3>Noonn</h3>
                         <ul class="list-inline">
                             <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                                <a href="https://www.facebook.com/melodiiz" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
                             </li>
                             <li>
                                 <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
@@ -229,7 +286,7 @@
                                 <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
                             </li>
                             <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                                <a href="https://th.linkedin.com/in/yanika-buatong-13b152a7/en" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -254,13 +311,7 @@
         </a>
     </div>
 
-    
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
 
     <!-- Plugin JavaScript -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
@@ -278,5 +329,4 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
 </body>
-
 </html>

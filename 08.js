@@ -1,19 +1,31 @@
 var source;
+var mode = 0; // 0: dtw, 1: eu
+var dtwDistance = {};
+var euDistance = {};
 var rgb1, rgb2, red1, red2;
 var r1=[],g1=[],b1=[],a1=[];
 var r2=[],g2=[],b2=[],a2=[];
 
 $(document).ready(function(){
+
+    var causeRepaintsOn = $('.score-text');
+
+    $(window).resize(function () {
+        causeRepaintsOn.css("z-index");
+    });
 	
 	
-	$("#btn-dtw").click(dtw);
-	$("#btn-eu").click(eu);
+	$("#btn-dtw").click(function(){ mode = 0; });
+	$("#btn-eu").click(function(){ mode = 1; });
+    $("#btn-submit").click(submit);
 	$("#btn-r").click(showRed);
 	$("#btn-g").click(showGreen);
 	$("#btn-b").click(showBlue);
-	$("#result").hide();
+	// $("#result").hide();
 	$("#img1").hide();
 	$("#img2").hide();
+    $("#img11").hide();
+    $("#img22").hide();
 	$("#green").hide();
 	$("#blue").hide();
 	$("#cv1").hide();
@@ -44,24 +56,40 @@ function showRed(e) {
 	$("#red").show();
 	$("#green").hide();
 	$("#blue").hide();
+
+    var txt = "";
+    if (mode == 0) { txt =  dtwDistance.r; }
+    else if (mode == 1) { txt =  euDistance.r; }
+    $(".score-text").text(txt);
 };
 
 function showGreen(e) {
 	$("#red").hide();
 	$("#green").show();
 	$("#blue").hide();
+
+    var txt = "";
+    if (mode == 0) { txt =  dtwDistance.g; }
+    else if (mode == 1) { txt =  euDistance.g; }
+    $(".score-text").text(txt);
 };
 
 function showBlue(e) {
 	$("#red").hide();
 	$("#green").hide();
 	$("#blue").show();
+
+    var txt = "";
+    if (mode == 0) { txt =  dtwDistance.b; }
+    else if (mode == 1) { txt =  euDistance.b; }
+    $(".score-text").text(txt);
 };
 
 function imageIsLoaded1(e) {
     $('#img1').attr('src', e.target.result);
     $('#img11').attr('src', e.target.result);
     $("#img1").show();
+    $("#img11").show();
 
 };
 
@@ -69,25 +97,111 @@ function imageIsLoaded2(e) {
     $('#img2').attr('src', e.target.result);
     $('#img22').attr('src', e.target.result);
     $("#img2").show();
+    $("#img22").show();
     
 };
 
+function submit(e) {
+    if ($('#img1').css('display') == 'none' || $('#img2').css('display') == 'none') {
+        BootstrapDialog.show({
+            title: 'WARNING',
+            message: 'Please choose pictures',
+            type: BootstrapDialog.TYPE_DANGER
+        });
+        return;
+    }
+
+    getRGB1();
+    getRGB2();
+    drawGraph();
+
+    if(mode == 0) dtw(e);
+    else if(mode == 1) eu(e);
+}
+
 
 function dtw(e){
-	$("#func").hide();
-	getRGB1();
-	getRGB2();
-	drawGraph();
-	$("#result").show();
+	// $("#func").hide();
+
+    // Send to server for calculation
+    e.preventDefault();
+    console.log('Sent to server ...');
+
+    var data = {};
+    data.r1 = r1;
+    data.r2 = r2;
+    data.g1 = g1;
+    data.g2 = g2;
+    data.b1 = b1;
+    data.b2 = b2;
+    data.a1 = a1;
+    data.a2 = a2;
+
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(data),
+        contentType: 'application/json',
+        url: 'http://localhost:3000/endpoint',                      
+        success: function(data) {
+            var returnObject = JSON.parse(data)
+            console.log('success');
+            console.log('DTW of R: ' + returnObject.dtwr);
+            console.log('DTW of G: ' + returnObject.dtwg);
+            console.log('DTW of B: ' + returnObject.dtwb);
+            console.log('DTW of A: ' + returnObject.dtwa);
+
+            dtwDistance.r = returnObject.dtwr;
+            dtwDistance.g = returnObject.dtwg;
+            dtwDistance.b = returnObject.dtwb;
+            dtwDistance.a = returnObject.dtwa;
+
+            showRed();
+        }
+    });
+
+	// $("#result").show();
 };
 
 function eu(){
 
+    // R
+    var sum = 0;
+    var less = (r1 > r2) ? r2 : r1;
+    for (var i = less.length - 1; i >= 0; i--) {
+        sum = sum + Math.abs(r1[i] - r2[i]);
+    }
+    euDistance.r = sum;
+
+    // G
+    sum = 0;
+    less = (g1 > g2) ? g2 : g1;
+    for (var i = less.length - 1; i >= 0; i--) {
+        sum = sum + Math.abs(g1[i] - g2[i]);
+    }
+    euDistance.g = sum;
+
+    // B
+    sum = 0;
+    less = (b1 > b2) ? b2 : b1;
+    for (var i = less.length - 1; i >= 0; i--) {
+        sum = sum + Math.abs(b1[i] - b2[i]);
+    }
+    euDistance.b = sum;
+
+    // A
+    sum = 0;
+    less = (a1 > a2) ? a2 : a1;
+    for (var i = less.length - 1; i >= 0; i--) {
+        sum = sum + Math.abs(a1[i] - a2[i]);
+    }
+    euDistance.a = sum;
+
+    showRed();
 };
 
 function getRGB1(e){
 	var c = document.getElementById("cv1");
-    var ctx=c.getContext("2d");
+    var ctx = c.getContext("2d");
     var img = document.getElementById("img1");
     
     var w = img.width;
@@ -104,16 +218,21 @@ function getRGB1(e){
 		b1.push(rgb1[i +2]); // blue
 		a1.push(rgb1[i +3]); // alpha
 	}
+
+    // Hide input
+    // $('#img1').hide();
 	
 	//var rgb1Array = Array.prototype.slice.call(rgb1);
 };
 
 function getRGB2(e){
 	var c = document.getElementById("cv2");
-    var ctx=c.getContext("2d");
+    var ctx = c.getContext("2d");
     var img = document.getElementById("img2");
-    c.width = img.width;
-    c.height = img.height;
+    var w = img.width;
+    var h = img.height;
+    c.width = w;
+    c.height = h;
 	ctx.drawImage(img, 0, 0);
 	rgb2 = ctx.getImageData(0, 0, c.width, c.height).data;
 	for (var i = 0, n = 100; i < n; i += 4) {
@@ -123,6 +242,9 @@ function getRGB2(e){
 		b2.push(rgb2[i +2]); // blue
 		a2.push(rgb2[i +3]); // alpha
 	}
+
+    // Hide input
+    // $('#img2').hide();
 };
 
 

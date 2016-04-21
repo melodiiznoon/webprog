@@ -37,6 +37,9 @@ app.post('/endpoint', function(req, res, next){
 	res.send(JSON.stringify(data));
 });
 
+// Serve up files
+app.use('/', express.static(__dirname));
+
 // Start server
 app.listen(port, function(){
 	console.log("Start server at port " + port + " ...");
