@@ -1,4 +1,5 @@
 var source;
+var rgb;
 $(document).ready(function(){
 	
 	$("#btn-dtw").click(dtw);
@@ -26,24 +27,28 @@ function imageIsLoaded(e) {
 
 function showImage(e) {
     $('<img>').appendTo($("#result")).attr('src', e.target.result);
-
 };
 
 function dtw(e){
 	$("#func").hide();
 	getRGB();
+
+	// Call NodeJS
+	
+
 	$("#result").show();
 };
 
 function getRGB(e){
+
 	var c = document.getElementById("cv1");
-    var ctx=c.getContext("2d");
     var img = document.getElementById("img1");
-    c.width = img.width;
-    c.height = img.height;
+    // c.width = img.width;
+    // c.height = img.height;
+    var ctx = c.getContext("2d");
 	ctx.drawImage(img, 0, 0);
-	var rgb = ctx.getImageData(0, 0, c.width, c.height).data;
-	red = rgb[0];
-	green = rgb[1];
-	alert(red+" "+green);
+	rgb = ctx.getImageData(0, 0, c.width, c.height).data;
+	// red = rgb[0];
+	// green = rgb[1];
+	// alert(red+" "+green);
 };
