@@ -111,6 +111,8 @@ function submit(e) {
         return;
     }
 
+    r1=[],g1=[],b1=[],a1=[];
+    r2=[],g2=[],b2=[],a2=[];
     getRGB1();
     getRGB2();
     drawGraph();
@@ -211,7 +213,7 @@ function getRGB1(e){
 	ctx.drawImage(img, 0, 0);
 
 	rgb1 = ctx.getImageData(0, 0, c.width, c.height).data;
-	for (var i = 0, n = 100; i < n; i += 4) {
+	for (var i = 1000, n = i+800; i < n; i += 8) {
 	    
 		r1.push(rgb1[i  ]);
 		g1.push(rgb1[i +1]); // green
@@ -235,7 +237,9 @@ function getRGB2(e){
     c.height = h;
 	ctx.drawImage(img, 0, 0);
 	rgb2 = ctx.getImageData(0, 0, c.width, c.height).data;
-	for (var i = 0, n = 100; i < n; i += 4) {
+
+
+	for (var i = 1000, n = i+800; i < n; i += 8) {
 	    
 		r2.push(rgb2[i  ]);
 		g2.push(rgb2[i +1]); // green
