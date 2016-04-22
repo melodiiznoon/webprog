@@ -53,9 +53,12 @@ $(document).ready(function(){
 });
 
 function showRed(e) {
+
 	$("#red").show();
 	$("#green").hide();
 	$("#blue").hide();
+
+    drawGraph();
 
     var txt = "";
     if (mode == 0) { txt =  dtwDistance.r; }
@@ -64,9 +67,12 @@ function showRed(e) {
 };
 
 function showGreen(e) {
+
 	$("#red").hide();
 	$("#green").show();
 	$("#blue").hide();
+
+    drawGraph();
 
     var txt = "";
     if (mode == 0) { txt =  dtwDistance.g; }
@@ -75,9 +81,12 @@ function showGreen(e) {
 };
 
 function showBlue(e) {
+
 	$("#red").hide();
 	$("#green").hide();
 	$("#blue").show();
+
+    drawGraph();
 
     var txt = "";
     if (mode == 0) { txt =  dtwDistance.b; }
@@ -119,6 +128,9 @@ function submit(e) {
 
     if(mode == 0) dtw(e);
     else if(mode == 1) eu(e);
+
+    $('#img11').hide();
+    $('#img22').hide();
 }
 
 
